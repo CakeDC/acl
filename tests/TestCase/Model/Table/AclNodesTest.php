@@ -364,9 +364,7 @@ class AclNodeTest extends TestCase
      */
     public function testNodeActionAuthorize()
     {
-        $this->deprecated(function () {
-            Plugin::getCollection()->add(new \TestPlugin\Plugin());
-        });
+        Plugin::getCollection()->add(new \TestPlugin\Plugin());
 
         $Aro = TableRegistry::getTableLocator()->get('DbAroTest');
         $Aro->setEntityClass(App::className('TestPlugin.TestPluginAuthUser', 'Model/Entity'));
@@ -382,8 +380,7 @@ class AclNodeTest extends TestCase
         $expected = $aro->id;
         $this->assertSame($expected, $result[0]);
 
-        $this->deprecated(function () {
-            Plugin::getCollection()->clear();
-        });
+        Plugin::getCollection()->clear();
+
     }
 }
