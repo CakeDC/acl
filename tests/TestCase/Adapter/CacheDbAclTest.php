@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
@@ -16,26 +17,21 @@
 namespace Acl\Test\TestCase\Adapter;
 
 use Acl\Adapter\CachedDbAcl;
-use Acl\Controller\Component\AclComponent;
 use Cake\Cache\Cache;
-use Cake\Controller\ComponentRegistry;
 use Cake\Core\Configure;
 use Cake\ORM\Entity;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
  * CachedDbAclTwoTest class
- *
+ * 
  */
 class CachedDbAclTwoTest extends CachedDbAcl
 {
-
     //public $Permission = null;
 
     /**
      * construct method
-     *
      */
     // public function __construct()
     // {
@@ -48,7 +44,6 @@ class CachedDbAclTwoTest extends CachedDbAcl
      * @param string|array|Entity $aro The requesting object identifier.
      * @param string|array|Entity $aco The controlled object identifier.
      * @param string $action Action
-     *
      * @return string
      */
     public function getCacheKey($aro, $aco, $action)
@@ -59,7 +54,6 @@ class CachedDbAclTwoTest extends CachedDbAcl
 
 /**
  * Test case for AclComponent using the CachedDbAcl implementation.
- *
  */
 class CacheDbAclTest extends TestCase
 {
@@ -77,7 +71,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', __NAMESPACE__ . '\CachedDbAclTwoTest');
@@ -96,7 +90,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function tearDown() :void
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Acl);

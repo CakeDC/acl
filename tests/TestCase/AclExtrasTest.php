@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Acl Extras Shell.
@@ -34,11 +35,9 @@ include dirname(__FILE__) . DS . 'test_plugin_admin_controllers.php';
 
 /**
  * AclExtras Shell Test case
- *
  */
 class AclExtrasTest extends TestCase
 {
-
     public $fixtures = [
         'app.Acos',
         'app.Aros',
@@ -50,7 +49,7 @@ class AclExtrasTest extends TestCase
      *
      * @return void
      */
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', 'DbAcl');
@@ -66,7 +65,7 @@ class AclExtrasTest extends TestCase
      *
      * @return void
      */
-    public function tearDown() :void
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Task);
@@ -368,12 +367,10 @@ class AclExtrasTest extends TestCase
      */
     public function testUpdateWithPlugins()
     {
-        $this->deprecated(function () {
-            Plugin::getCollection()->clear();
-            Plugin::getCollection()->add(new \TestPlugin\Plugin());
-            Plugin::getCollection()->add(new \Nested\TestPluginTwo\Plugin());
-            //Plugin::routes();
-        });
+        Plugin::getCollection()->clear();
+        Plugin::getCollection()->add(new \TestPlugin\Plugin());
+        Plugin::getCollection()->add(new \Nested\TestPluginTwo\Plugin());
+
         $this->_clean();
 
         $this->Task->expects($this->atLeast(3))
@@ -433,10 +430,8 @@ class AclExtrasTest extends TestCase
      */
     public function testSyncWithNestedPlugin()
     {
-        $this->deprecated(function () {
-            Plugin::getCollection()->clear();
-            Plugin::getCollection()->add(new \Nested\TestPluginTwo\Plugin());
-        });
+        Plugin::getCollection()->clear();
+        Plugin::getCollection()->add(new \Nested\TestPluginTwo\Plugin());
         $this->_clean();
 
         $this->Task->expects($this->atLeast(2))
